@@ -1,0 +1,95 @@
+﻿@model ML.Materia
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Materia</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Form", "Materia", FormMethod.Post, new { enctype = "multiplaform/form-data" }))
+            {
+                <div class="row">
+                    <div class="col-3 hidden">
+                        <div class="form-group">
+                            <div class="col-md-1">
+                                @Html.LabelFor(model => model.IdMateria, new { @class = "hidden" })
+                                @Html.TextBoxFor(model => model.IdMateria, new { @class = "hidden form-control" })
+                                @Html.ValidationMessageFor(model => Model.IdMateria)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.Nombre)
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @onkeypress = "return SoloLetras(event, 'lblNombre')" })
+                                @Html.ValidationMessageFor(model => model.Nombre)
+                                @Html.Label("", null, new { @id = "lblNombre", @style = "display: block;" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.LabelFor(model => model.Costo)
+                                @Html.TextBoxFor(model => model.Costo, new { @class = "form-control"  })
+                                @Html.ValidationMessageFor(model => model.Costo)
+                                @Html.Label("", null, new { @id = "lblApellidoPaterno", @style = "display: block;" })
+                            </div>
+                        </div>
+                    </div>
+
+               
+
+                </div>
+
+                <div class="row">
+                    <div class=" col-4">
+                        <input type="submit" value="Guardar" class="btn btn-success" />
+                        @Html.ActionLink("Regresar", "GetAll", "Materia", htmlAttributes: new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            }
+
+
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts
+{
+
+    <script type="text/javascript">
+
+        function SoloLetras(e, controlId) {
+            var caracter = e.key;
+            if (!/^[a-zA-Z\u00C0-\u00FF ]*$/g.test(caracter)) {
+                $('#' + controlId).text("Solo se aceptan letras");
+                $('#' + controlId).css({ "color": "red" });
+                return false;
+            }
+            else {
+                $('#' + controlId).text("");
+                return true;
+            }
+        }
+
+
+    </script>
+}
+
+
+
+

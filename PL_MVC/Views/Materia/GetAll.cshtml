@@ -1,0 +1,49 @@
+﻿@model ML.Materia
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Materias</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div style="float:right">
+            @Html.ActionLink("+", "Form", "Materia", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+
+    </div>
+
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id Materia</th>
+                    <th>Nombre</th>
+                    <th>Costo</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.Materia materia in Model.Materias)
+                {
+                    <tr>
+                        <td>@materia.IdMateria</td>
+                        <td>@materia.Nombre</td>
+                        <td>@materia.Costo</td>
+                        
+                        <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Materia", new {IdMateria = materia.IdMateria})"></a></td>
+                        <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Materia", new {IdMateria = materia.IdMateria})" onclick=" return confirm('Estas seguro que quieres eliminar el resgitro=');"></a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
