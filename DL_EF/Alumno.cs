@@ -14,9 +14,18 @@ namespace DL_EF
     
     public partial class Alumno
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Alumno()
+        {
+            this.AlumnoMaterias = new HashSet<AlumnoMateria>();
+        }
+    
         public int IdAlumno { get; set; }
         public string Nombre { get; set; }
         public string ApellidoPaterno { get; set; }
         public string ApellidoMaterno { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AlumnoMateria> AlumnoMaterias { get; set; }
     }
 }

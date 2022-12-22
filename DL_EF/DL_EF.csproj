@@ -59,6 +59,15 @@
     <Compile Include="AlumnoGetById_Result.cs">
       <DependentUpon>LSantosControlEscolar.tt</DependentUpon>
     </Compile>
+    <Compile Include="AlumnoMateria.cs">
+      <DependentUpon>LSantosControlEscolar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlumnoMateriaGetall_Result.cs">
+      <DependentUpon>LSantosControlEscolar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlumnoMateriaGetByIdAlumno_Result.cs">
+      <DependentUpon>LSantosControlEscolar.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="LSantosControlEscolar.Context.cs">
       <AutoGen>True</AutoGen>
@@ -82,6 +91,9 @@
       <DependentUpon>LSantosControlEscolar.tt</DependentUpon>
     </Compile>
     <Compile Include="MateriaGetById_Result.cs">
+      <DependentUpon>LSantosControlEscolar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MateriasGetNoAsignadas_Result.cs">
       <DependentUpon>LSantosControlEscolar.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

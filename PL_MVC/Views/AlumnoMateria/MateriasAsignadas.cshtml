@@ -1,0 +1,128 @@
+﻿@model ML.AlumnoMateria
+@{
+    ViewBag.Title = "MateriasAsignadas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Materias Asignadas</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 hidden">
+            <div class="form-group">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.Alumno.IdAlumno, new { @class = "hidden" })
+                    @Html.TextBoxFor(model => model.Alumno.IdAlumno, new { @class = "hidden form-control" })
+                    @Html.ValidationMessageFor(model => model.Alumno.IdAlumno)
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 text-center">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Alumno</h3>
+                </div>
+                <div class="panel-body">
+                    @Model.Alumno.Nombre @Model.Alumno.ApellidoPaterno @Model.Alumno.ApellidoMaterno
+                </div>
+            </div>
+
+
+
+            @*<div class="form-group">
+                <div class="">
+                    <input type="text" class="form-control" readonly value="@Model.Alumno.IdAlumno  @Model.Alumno.Nombre @Model.Alumno.ApellidoPaterno @Model.Alumno.ApellidoMaterno" >
+                    @Model.Alumno.IdAlumno  @Model.Alumno.Nombre @Model.Alumno.ApellidoPaterno @Model.Alumno.ApellidoMaterno
+                </div>
+            </div>*@
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="" style="float:right">
+            <a class="btn btn-success glyphicon glyphicon-plus" href="@Url.Action("AsignarMateria","AlumnoMateria", new { IdAlumno =  @Model.Alumno.IdAlumno})"></a>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        @if (Model.AlumnoMaterias.Count == 0)
+        {
+        <div class="">
+            <div class="alert alert-danger" role="alert">El Alumno elegido no tiene materias Asignadas</div>
+        </div>
+            
+        }
+        else
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">Id Materia</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Costo</th>
+
+
+                        <th class="text-center">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.AlumnoMateria alumnoMateria in Model.AlumnoMaterias)
+                    {
+                        <tr>
+                            <td class="text-center">@alumnoMateria.Materia.IdMateria</td>
+                            <td class="text-center">@alumnoMateria.Materia.Nombre</td>
+                            <td class="text-center">@alumnoMateria.Materia.Costo</td>
+
+
+                            <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Eliminar", "AlumnoMateria", new {IdAlumno = Model.Alumno.IdAlumno, IdMateria = alumnoMateria.Materia.IdMateria})" onclick=" return confirm('Estas seguro que quieres eliminar el resgitro?');"></a></td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+            <div class="row" style="margin-top: 17px;">
+
+                <div class="text-center form-gorup" style="float:left">
+                    <div class="col-md-3">
+
+                        <a class="btn btn-danger" style="margin-right: 40px;" href="@Url.Action("GetAll","AlumnoMateria")">Regresar</a>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 text-center" style="float: right;">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Total</h3>
+                        </div>
+                        <div class="panel-body">
+                            $@ViewBag.Total
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="row">
+                <div class="text-center form-gorup" style="float">
+                    <div class="col-md-3">
+
+                        <a class="btn btn-danger" style="margin-right: 40px;" href="@Url.Action("GetAll","AlumnoMateria")">Regresar</a>
+
+                    </div>
+                </div>
+            </div>*@
+
+           
+
+        }
+
+
+
+
+    </div>
+
+</div>
+
